@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login | The 6:4 Fellowship</title>
+    <meta name="description" content="Sign in to your 6:4 Fellowship member account." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,450;9..144,550;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header site-header--solid">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html" aria-label="The 6:4 Fellowship home">
+          <img class="brand__logo" src="assets/logo.png" alt="The 6:4 Fellowship" width="315" height="60" />
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+                <nav class="nav-links" aria-label="Primary">
+          <a href="about.html">About</a>
+          <a href="library.html">Library</a>
+          <a href="resources.html">Resources</a>
+          <a href="store.html">Store</a>
+          <a href="events.html">Events</a>
+          <a href="coaching.html">Coaching</a>
+          <a href="donate.html">Donate</a>
+          <a href="contact.html">Contact</a>
+          <a href="login.html" aria-current="page">Login</a>
+          <a class="nav-cta" href="join.html">Join for Free</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="auth-page">
+      <section class="auth-shell">
+        <div class="auth-panel reveal" id="login-view">
+          <p class="eyebrow">Members</p>
+          <h1 class="display auth-panel__title">Welcome back</h1>
+          <p class="auth-panel__lede">
+            Sign in to access resources, coaching pathways, and fellowship updates.
+          </p>
+
+          <form class="form form--login" action="#" method="post" id="login-form">
+            <label>
+              Email
+              <input type="email" name="email" required autocomplete="email" placeholder="you@church.org" />
+            </label>
+            <label>
+              Password
+              <input type="password" name="password" required autocomplete="current-password" />
+            </label>
+            <div class="auth-panel__row">
+              <label class="auth-check">
+                <input type="checkbox" name="remember" />
+                Remember me
+              </label>
+              <a class="link-arrow" href="#" id="forgot-password-link">Forgot password?</a>
+            </div>
+            <button class="btn btn--primary" type="submit">Sign In</button>
+            <p class="form-note">Use the email and password for your Supabase member account.</p>
+          </form>
+
+          <p class="auth-panel__footer">
+            Not a member yet?
+            <a href="join.html">Join for Free</a>
+          </p>
+        </div>
+
+        <div class="auth-panel reveal is-visible" id="forgot-view" hidden>
+          <p class="eyebrow">Account recovery</p>
+          <h1 class="display auth-panel__title">Reset your password</h1>
+          <p class="auth-panel__lede">
+            Enter your email and we’ll send a link to choose a new password.
+          </p>
+
+          <form class="form form--login" action="#" method="post" id="forgot-form">
+            <label>
+              Email
+              <input type="email" name="email" required autocomplete="email" placeholder="you@church.org" />
+            </label>
+            <button class="btn btn--primary" type="submit">Send Reset Link</button>
+            <p class="form-note">You’ll receive an email from Supabase if that address is registered.</p>
+          </form>
+
+          <p class="auth-panel__footer">
+            Remembered it?
+            <a href="#" id="back-to-login">Back to sign in</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html" aria-label="The 6:4 Fellowship">
+              <img class="brand__block" src="assets/logo-block.png" alt="The 6:4 Fellowship" width="270" height="270" />
+            </a>
+            <p style="margin-top: 1rem">
+              Primary ministry of
+              <a href="https://www.strategicrenewal.com/" target="_blank" rel="noopener">Strategic Renewal</a>.
+            </p>
+          </div>
+                    <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="about.html">About 6:4</a>
+            <a href="library.html">Library</a>
+            <a href="resources.html">Resources</a>
+            <a href="store.html">Store</a>
+            <a href="events.html">Events</a>
+            <a href="coaching.html">Coaching</a>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="join.html">Join for Free</a>
+            <a href="donate.html">Donate</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://63discipleship.com" target="_blank" rel="noopener">6:3 Discipleship</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span class="y"></span> The 6:4 Fellowship. Remake for demonstration.</p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.querySelectorAll(".y").forEach((el) => (el.textContent = new Date().getFullYear()));
+    </script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/auth-nav.js"></script>
+    <script type="module" src="js/login.js"></script>
+  </body>
+</html>

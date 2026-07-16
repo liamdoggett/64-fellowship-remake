@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Members | The 6:4 Fellowship</title>
+    <meta name="description" content="Your 6:4 Fellowship member area." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,450;9..144,550;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header site-header--solid">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html" aria-label="The 6:4 Fellowship home">
+          <img class="brand__logo" src="assets/logo.png" alt="The 6:4 Fellowship" width="315" height="60" />
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+                <nav class="nav-links" aria-label="Primary">
+          <a href="about.html">About</a>
+          <a href="library.html">Library</a>
+          <a href="resources.html">Resources</a>
+          <a href="store.html">Store</a>
+          <a href="events.html">Events</a>
+          <a href="coaching.html">Coaching</a>
+          <a href="donate.html">Donate</a>
+          <a href="contact.html">Contact</a>
+          <a href="members.html" aria-current="page">Members</a>
+          <button class="nav-cta nav-cta--quiet" type="button" id="sign-out-btn">Sign Out</button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow" style="color: var(--dawn)">Member area</p>
+          <h1>Welcome, <span id="member-name">pastor</span></h1>
+          <p id="member-email">Loading your session…</p>
+        </div>
+      </section>
+
+      <section class="section section--paper">
+        <div class="container member-dashboard">
+          <div class="member-progress-card">
+            <div class="member-progress-card__head">
+              <div>
+                <p class="eyebrow">Coaching progress</p>
+                <h2 class="display member-progress-card__title">Your pathway</h2>
+              </div>
+              <div class="member-progress-card__stat">
+                <span id="progress-percent">—</span>
+                <small id="progress-meta">No coaching data yet</small>
+              </div>
+            </div>
+
+            <div
+              class="progress-bar is-empty"
+              id="coaching-progress-bar"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+              aria-label="Coaching pathway progress"
+            >
+              <div class="progress-bar__fill" id="progress-fill"></div>
+            </div>
+
+            <div id="progress-empty" class="progress-empty">
+              <p>
+                This bar stays empty until you begin coaching. Complete steps on the coaching pathway to start
+                tracking progress here.
+              </p>
+              <a class="btn btn--primary" href="coaching.html#pathway">Go through coaching first</a>
+            </div>
+
+            <div id="progress-active" class="progress-active" hidden>
+              <ul class="member-steps" id="progress-steps"></ul>
+              <a class="link-arrow" href="coaching.html#pathway">Continue coaching</a>
+            </div>
+          </div>
+
+          <aside class="member-aside">
+            <p class="eyebrow">Next</p>
+            <h3 class="display" style="font-size: 1.5rem; margin: 0.5rem 0 0.75rem">Stay on the path</h3>
+            <p style="color: var(--slate); margin-bottom: 1.25rem">
+              Coaching is sequential. Finish each step in order — your member progress updates only after you
+              mark steps complete on the coaching page.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.85rem">
+              <a class="btn btn--primary" href="coaching.html#pathway">Open coaching</a>
+              <a class="btn btn--outline" href="events.html">View events</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-bottom" style="border: 0; padding-top: 0">
+          <p>© <span class="y"></span> The 6:4 Fellowship.</p>
+          <p><a href="index.html">Back to home</a></p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.querySelectorAll(".y").forEach((el) => (el.textContent = new Date().getFullYear()));
+    </script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/auth-nav.js"></script>
+    <script type="module" src="js/members.js"></script>
+  </body>
+</html>

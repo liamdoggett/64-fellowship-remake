@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact | The 6:4 Fellowship</title>
+    <meta
+      name="description"
+      content="Get in touch with The 6:4 Fellowship team about coaching, events, membership, or partnership."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,450;9..144,550;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header site-header--solid">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html" aria-label="The 6:4 Fellowship home">
+          <img class="brand__logo" src="assets/logo.png" alt="The 6:4 Fellowship" width="315" height="60" />
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="about.html">About</a>
+          <a href="library.html">Library</a>
+          <a href="resources.html">Resources</a>
+          <a href="store.html">Store</a>
+          <a href="events.html">Events</a>
+          <a href="coaching.html">Coaching</a>
+          <a href="donate.html">Donate</a>
+          <a href="contact.html" aria-current="page">Contact</a>
+          <a href="login.html">Login</a>
+          <a class="nav-cta" href="join.html">Join for Free</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow" style="color: var(--dawn)">Contact</p>
+          <h1>We’d love to hear from you</h1>
+          <p>
+            Questions about membership, coaching, regional gatherings, or partnership? Send a note and the
+            team will follow up.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section--paper">
+        <div class="container contact-layout">
+          <div class="reveal">
+            <p class="eyebrow">Send a message</p>
+            <h2 class="display" style="font-size: clamp(1.85rem, 3vw, 2.4rem); margin: 0.65rem 0 1.5rem">
+              Reach the team
+            </h2>
+            <form class="form" action="#" method="post" id="contact-form">
+              <label>
+                Name
+                <input type="text" name="name" required autocomplete="name" />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" required autocomplete="email" />
+              </label>
+              <label>
+                Subject
+                <span class="select">
+                  <select name="subject" required>
+                    <option value="" disabled selected>Choose a subject</option>
+                    <option value="membership">Membership</option>
+                    <option value="coaching">Coaching</option>
+                    <option value="events">Events</option>
+                    <option value="resources">Resources</option>
+                    <option value="giving">Giving / partnership</option>
+                    <option value="other">Other</option>
+                  </select>
+                </span>
+              </label>
+              <label>
+                Message
+                <textarea name="message" required placeholder="How can we serve you?"></textarea>
+              </label>
+              <button class="btn btn--primary" type="submit">Send Message</button>
+              <p class="form-note" id="contact-form-note">
+                Prefer to join first?
+                <a href="join.html">Create a free membership</a>.
+              </p>
+            </form>
+          </div>
+          <aside class="contact-aside reveal reveal-delay-1">
+            <h3>Quick links</h3>
+            <p>Looking for a specific next step? Start here.</p>
+            <div class="contact-links">
+              <a href="join.html">Join for Free →</a>
+              <a href="events.html">Upcoming events →</a>
+              <a href="coaching.html">Coaching pathways →</a>
+              <a href="resources.html">Resource library overview →</a>
+              <a href="donate.html">Donate today →</a>
+              <a href="https://63discipleship.com" target="_blank" rel="noopener">Not a pastor? 6:3 Discipleship →</a>
+              <a href="https://www.strategicrenewal.com/" target="_blank" rel="noopener">Strategic Renewal →</a>
+            </div>
+            <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--fog)">
+              <p class="eyebrow" style="margin-bottom: 0.75rem">Divine pattern</p>
+              <p class="pattern__equation" style="font-size: 1.85rem; margin: 0">6:4 + 6:3 = 6:7</p>
+              <p style="color: var(--slate); margin-top: 0.75rem; font-size: 0.95rem">
+                Empower 6:4 leaders. Encourage 6:3 disciples. Envision a 6:7 awakening.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html" aria-label="The 6:4 Fellowship">
+              <img class="brand__block" src="assets/logo-block.png" alt="The 6:4 Fellowship" width="270" height="270" />
+            </a>
+            <p style="margin-top: 1rem">
+              Primary ministry of
+              <a href="https://www.strategicrenewal.com/" target="_blank" rel="noopener">Strategic Renewal</a>.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="about.html">About 6:4</a>
+            <a href="library.html">Library</a>
+            <a href="resources.html">Resources</a>
+            <a href="store.html">Store</a>
+            <a href="events.html">Events</a>
+            <a href="coaching.html">Coaching</a>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="join.html">Join for Free</a>
+            <a href="donate.html">Donate</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://63discipleship.com" target="_blank" rel="noopener">6:3 Discipleship</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span class="y"></span> The 6:4 Fellowship.</p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.querySelectorAll(".y").forEach((el) => (el.textContent = new Date().getFullYear()));
+      const form = document.getElementById("contact-form");
+      const note = document.getElementById("contact-form-note");
+      form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        note.textContent = "Thanks — your message is ready to send. For now this demo form confirms locally.";
+        form.reset();
+        const valueEl = form.querySelector(".custom-select__value");
+        if (valueEl) {
+          valueEl.textContent = "Choose a subject";
+          valueEl.classList.add("is-placeholder");
+        }
+        form.querySelectorAll('.custom-select [aria-selected="true"]').forEach((el) => {
+          el.setAttribute("aria-selected", "false");
+        });
+      });
+    </script>
+    <script src="js/main.js"></script>
+    <script src="js/custom-select.js"></script>
+    <script type="module" src="js/auth-nav.js"></script>
+  </body>
+</html>

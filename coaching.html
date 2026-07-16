@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coaching | The 6:4 Fellowship</title>
+    <meta
+      name="description"
+      content="The Praying Leader coaching, Ministry Marriage Mentoring, and Discipleship by Design guideposts."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,450;9..144,550;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header site-header--solid">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html" aria-label="The 6:4 Fellowship home">
+          <img class="brand__logo" src="assets/logo.png" alt="The 6:4 Fellowship" width="315" height="60" />
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+                <nav class="nav-links" aria-label="Primary">
+          <a href="about.html">About</a>
+          <a href="library.html">Library</a>
+          <a href="resources.html">Resources</a>
+          <a href="store.html">Store</a>
+          <a href="events.html">Events</a>
+          <a href="coaching.html" aria-current="page">Coaching</a>
+          <a href="donate.html">Donate</a>
+          <a href="contact.html">Contact</a>
+          <a href="login.html">Login</a>
+          <a class="nav-cta" href="join.html">Join for Free</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow" style="color: var(--dawn)">Coaching</p>
+          <h1>For the health, hope, and Spirit-empowerment of pastoral ministry</h1>
+          <p>
+            The pathway to stronger leadership is through becoming a praying leader — and leading a culture of
+            prayer in your church.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section--paper">
+        <div class="container coaching-grid">
+          <div class="coaching-feature reveal">
+            <p class="eyebrow" style="color: var(--dawn)">Flagship</p>
+            <h3>The Praying Leader</h3>
+            <p>
+              A coaching experience that gives you a biblical pathway to spiritual leadership — empowering you
+              and your people for greater gospel ministry. Lead transformation by developing a culture of prayer.
+            </p>
+            <a
+              class="btn btn--primary"
+              href="https://64fellowship.com/events/praying-leader/"
+              target="_blank"
+              rel="noopener"
+              >More Information</a
+            >
+          </div>
+          <div class="coaching-side reveal reveal-delay-1">
+            <article>
+              <h3>Ministry Marriage Mentoring</h3>
+              <p>
+                Misaligned priorities and lack of counsel put ministry couples at risk. This mentoring pathway
+                strengthens marriages and ministries together.
+              </p>
+              <a
+                class="link-arrow"
+                href="https://64fellowship.com/events/ministry-marriage-coaching/"
+                target="_blank"
+                rel="noopener"
+                >Learn more</a
+              >
+            </article>
+            <article>
+              <h3>LIVE Cohorts &amp; E-Course</h3>
+              <p>
+                Join a live coaching cohort or take the flexible e-course version — same content, different
+                pacing.
+              </p>
+              <a class="link-arrow" href="events.html">See upcoming dates</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Discipleship by Design</p>
+            <h2>Guidepost coaching series</h2>
+            <p>
+              Guideposts along the discipleship pathway — for your own walk and for encouraging your
+              congregation toward daily discipleship that glorifies Christ.
+            </p>
+          </div>
+          <div class="guideposts">
+            <div class="guidepost reveal">
+              <h4>Worship-based Prayer</h4>
+              <p>Cultivate Scripture-fed, Spirit-led rhythms of prayer.</p>
+            </div>
+            <div class="guidepost reveal reveal-delay-1">
+              <h4>Good Repute</h4>
+              <p>The Deeper Life Coaching — character that carries the call.</p>
+            </div>
+            <div class="guidepost reveal reveal-delay-2">
+              <h4>Full of the Holy Spirit</h4>
+              <p>Transforming Presence Coaching for Spirit-dependent leadership.</p>
+            </div>
+            <div class="guidepost reveal reveal-delay-3">
+              <h4>Full of Wisdom</h4>
+              <p>Guideposts for wise, Word-shaped pastoral practice.</p>
+            </div>
+          </div>
+          <p class="mt-2 reveal">
+            <a class="link-arrow" href="https://64fellowship.com/coaching/" target="_blank" rel="noopener"
+              >More on Discipleship by Design</a
+            >
+          </p>
+        </div>
+      </section>
+
+      <section class="section section--fog" id="pathway">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Member pathway</p>
+            <h2>Go through coaching to unlock progress</h2>
+            <p>
+              Complete these steps in order. Your member page progress bar stays empty until you start here —
+              then it fills as you mark each step complete.
+            </p>
+          </div>
+
+          <div id="coaching-pathway-gate" class="pathway-gate" hidden>
+            <p>Sign in to track coaching progress on your member page.</p>
+            <a class="btn btn--primary" href="login.html">Sign In</a>
+            <a class="btn btn--outline" href="join.html">Join for Free</a>
+          </div>
+
+          <div id="coaching-pathway-track" class="pathway-track" hidden>
+            <p class="pathway-signed-in" id="coaching-signed-in-as" hidden></p>
+            <p class="pathway-status" id="coaching-pathway-status">Loading your pathway…</p>
+            <ol class="pathway-list" id="coaching-pathway-list"></ol>
+            <p class="mt-2">
+              <a class="link-arrow" href="members.html">View progress on members page</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--ink">
+        <div class="container reveal">
+          <div class="quote-block">
+            <div class="quote-block__mark" aria-hidden="true">“</div>
+            <blockquote>
+              Most pastors decide to take the training because of a referral from a trusted pastor who has
+              testified to the game-changing difference these prayer competencies make.
+            </blockquote>
+            <cite>The 6:4 Fellowship <span>About our coaching strategy</span></cite>
+          </div>
+        </div>
+      </section>
+
+      <div class="cta-band" id="coaching-cta-guest">
+        <div class="cta-band__panel cta-band__panel--join">
+          <h3>Start with membership</h3>
+          <p>Sign in or join free, then explore coaching pathways that fit your season.</p>
+          <a class="btn btn--ghost" href="login.html">Sign In</a>
+        </div>
+        <div class="cta-band__panel cta-band__panel--give">
+          <h3>New here?</h3>
+          <p>Create a free member account to track your coaching progress.</p>
+          <a class="btn btn--ghost" href="join.html">Join for Free</a>
+        </div>
+      </div>
+
+      <div class="cta-band" id="coaching-cta-member" hidden>
+        <div class="cta-band__panel cta-band__panel--join">
+          <h3>Continue your pathway</h3>
+          <p>Mark coaching steps complete above, then review progress on your member page.</p>
+          <a class="btn btn--ghost" href="#pathway">Back to pathway</a>
+        </div>
+        <div class="cta-band__panel cta-band__panel--give">
+          <h3>Your member area</h3>
+          <p>See your coaching progress bar and next steps.</p>
+          <a class="btn btn--ghost" href="members.html">Open members</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html" aria-label="The 6:4 Fellowship">
+              <img class="brand__block" src="assets/logo-block.png" alt="The 6:4 Fellowship" width="270" height="270" />
+            </a>
+            <p style="margin-top: 1rem">
+              Primary ministry of
+              <a href="https://www.strategicrenewal.com/" target="_blank" rel="noopener">Strategic Renewal</a>.
+            </p>
+          </div>
+                    <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="about.html">About 6:4</a>
+            <a href="library.html">Library</a>
+            <a href="resources.html">Resources</a>
+            <a href="store.html">Store</a>
+            <a href="events.html">Events</a>
+            <a href="coaching.html">Coaching</a>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="join.html">Join for Free</a>
+            <a href="donate.html">Donate</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://63discipleship.com" target="_blank" rel="noopener">6:3 Discipleship</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span class="y"></span> The 6:4 Fellowship. Remake for demonstration.</p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.querySelectorAll(".y").forEach((el) => (el.textContent = new Date().getFullYear()));
+    </script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/auth-nav.js"></script>
+    <script type="module" src="js/coaching-track.js"></script>
+  </body>
+</html>
