@@ -72,15 +72,11 @@
               <div class="progress-bar__fill" id="progress-fill"></div>
             </div>
 
-            <div id="progress-empty" class="progress-empty">
-              <p>
-                This bar stays empty until you begin coaching. Complete steps on the coaching pathway to start
-                tracking progress here.
-              </p>
-              <a class="btn btn--primary" href="coaching.html#pathway">Go through coaching first</a>
+            <div id="progress-empty" class="progress-empty" hidden>
+              <p>Loading your pathway…</p>
             </div>
 
-            <div id="progress-active" class="progress-active" hidden>
+            <div id="progress-active" class="progress-active">
               <ul class="member-steps" id="progress-steps"></ul>
               <a class="link-arrow" href="coaching.html#pathway">Continue coaching</a>
             </div>
@@ -90,8 +86,7 @@
             <p class="eyebrow">Next</p>
             <h3 class="display" style="font-size: 1.5rem; margin: 0.5rem 0 0.75rem">Stay on the path</h3>
             <p style="color: var(--slate); margin-bottom: 1.25rem">
-              Coaching is sequential. Finish each step in order — your member progress updates only after you
-              mark steps complete on the coaching page.
+              You start at step 1 of 7 when you sign in. Finish each coaching step in order to move forward.
             </p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.85rem">
               <a class="btn btn--primary" href="coaching.html#pathway">Open coaching</a>

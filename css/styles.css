@@ -10,8 +10,6 @@
   --sea: #7a1600;
   --sea-deep: #5c1000;
   --dawn: #7a1600;
-  /* High-contrast accent on dark navy (for older readers) */
-  --dawn-on-dark: #ffb39a;
   --text-on-dark: rgba(255, 255, 255, 0.92);
   --muted-on-dark: rgba(255, 255, 255, 0.78);
   --slate: #5a6577;
@@ -707,11 +705,11 @@ button.nav-cta:hover,
 }
 
 .section--ink .link-arrow {
-  color: var(--dawn-on-dark);
+  color: var(--dawn);
 }
 
 .section--ink .link-arrow:hover {
-  color: #ffd0c2;
+  color: #fff;
 }
 
 .section--fog {
@@ -900,7 +898,7 @@ button.nav-cta:hover,
   font-family: var(--font-display);
   font-size: 0.9rem;
   letter-spacing: 0.12em;
-  color: var(--dawn-on-dark);
+  color: var(--dawn);
   margin-bottom: auto;
 }
 
@@ -923,7 +921,7 @@ button.nav-cta:hover,
 }
 
 .pathway .link-arrow:hover {
-  color: var(--dawn-on-dark);
+  color: var(--dawn);
 }
 
 /* ——— Stats ——— */
@@ -2179,7 +2177,7 @@ button.nav-cta:hover,
 .progress-bar__fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--sea), #a7290e);
+  background: linear-gradient(90deg, var(--sea), var(--sea-deep));
   border-radius: inherit;
   transition: width 0.6s var(--ease);
 }
@@ -2220,10 +2218,16 @@ button.nav-cta:hover,
   font-weight: 500;
 }
 
+.member-step.is-current {
+  color: var(--ink);
+  font-weight: 600;
+}
+
 .member-step__mark {
   width: 1.25rem;
   color: var(--sea);
   font-weight: 700;
+  text-align: center;
 }
 
 .member-aside {
@@ -2371,7 +2375,7 @@ button.nav-cta:hover,
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--dawn-on-dark);
+  color: var(--dawn);
   margin-bottom: 1rem;
 }
 

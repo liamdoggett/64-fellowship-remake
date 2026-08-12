@@ -1,4 +1,4 @@
-/** Coaching pathway steps — progress is earned only by completing these in order. */
+/** Coaching pathway — 7 sequential steps. Members start at 1 of 7 on sign-in. */
 export const COACHING_STEPS = [
   {
     id: "begin",
@@ -29,6 +29,11 @@ export const COACHING_STEPS = [
     id: "guideposts",
     title: "Discipleship guideposts",
     description: "Explore Worship-based Prayer, Good Repute, Spirit, and Wisdom guideposts.",
+  },
+  {
+    id: "awakening",
+    title: "Toward a 6:7 awakening",
+    description: "Carry Acts 6:4 into your church so the Word of God spreads and disciples multiply.",
   },
 ];
 
@@ -73,6 +78,15 @@ export function saveProgress(userId, progress) {
   return next;
 }
 
+/** On sign-in / members load: start every member at step 1 of 7. */
+export function ensureStartedAtOne(userId) {
+  if (!userId) return emptyProgress();
+  const progress = loadProgress(userId);
+  if (progress.started) return progress;
+  progress.started = true;
+  return saveProgress(userId, progress);
+}
+
 export function getProgressStats(userId) {
   const progress = loadProgress(userId);
   const total = COACHING_STEPS.length;
@@ -80,25 +94,27 @@ export function getProgressStats(userId) {
     progress.completed.includes(step.id)
   ).length;
 
-  // No data until the pathway has been started on the coaching page
   if (!progress.started) {
     return {
       progress,
       total,
       completedCount: 0,
-      percent: 0,
+      currentStep: 1,
+      percent: Math.round((1 / total) * 100),
       hasData: false,
       nextStep: COACHING_STEPS[0],
     };
   }
 
-  const percent = Math.round((completedCount / total) * 100);
+  const currentStep = completedCount >= total ? total : completedCount + 1;
+  const percent = Math.round((currentStep / total) * 100);
   const nextStep = COACHING_STEPS.find((step) => !progress.completed.includes(step.id)) || null;
 
   return {
     progress,
     total,
     completedCount,
+    currentStep,
     percent,
     hasData: true,
     nextStep,
@@ -127,7 +143,7 @@ export function completeStep(userId, stepId) {
 }
 
 export function startPathway(userId) {
-  return completeStep(userId, "begin");
+  return ensureStartedAtOne(userId);
 }
 
 export function isStepComplete(userId, stepId) {

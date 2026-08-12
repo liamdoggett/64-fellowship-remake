@@ -3,6 +3,7 @@ import {
   COACHING_STEPS,
   getProgressStats,
   completeStep,
+  ensureStartedAtOne,
   isStepComplete,
   isStepUnlocked,
 } from "./coaching-progress.js";
@@ -50,14 +51,11 @@ function showTrack(email) {
 function render() {
   if (!listEl || !userId) return;
 
+  ensureStartedAtOne(userId);
   const stats = getProgressStats(userId);
 
   if (statusEl) {
-    if (!stats.hasData) {
-      statusEl.textContent = "Start step 1 to begin tracking progress on your member page.";
-    } else {
-      statusEl.textContent = `${stats.completedCount} of ${stats.total} steps complete (${stats.percent}%).`;
-    }
+    statusEl.textContent = `Step ${stats.currentStep} of ${stats.total} — ${stats.completedCount} marked complete.`;
   }
 
   listEl.innerHTML = COACHING_STEPS.map((step, index) => {
@@ -115,6 +113,7 @@ async function init() {
     }
 
     userId = session.user.id;
+    ensureStartedAtOne(userId);
     showTrack(session.user.email || "your account");
     render();
   } catch (err) {
