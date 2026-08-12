@@ -622,7 +622,7 @@ button.nav-cta:hover,
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  color: var(--dawn) !important;
+  color: var(--white) !important;
 }
 
 .page-hero .eyebrow::before {
@@ -671,17 +671,17 @@ button.nav-cta:hover,
 
 .section--ink .eyebrow,
 .section--ink .eyebrow[style] {
-  color: var(--dawn) !important;
+  color: var(--white) !important;
 }
 
 .section--ink .quote-block__mark {
-  color: var(--dawn);
-  opacity: 1;
+  color: var(--white);
+  opacity: 0.9;
 }
 
 .section--ink .quote-block cite,
 .section--ink .quote-block cite[style] {
-  color: var(--dawn) !important;
+  color: var(--white) !important;
 }
 
 .section--ink .quote-block cite span {
@@ -689,7 +689,7 @@ button.nav-cta:hover,
 }
 
 .section--ink .pillar {
-  border-top-color: var(--dawn);
+  border-top-color: var(--white);
 }
 
 .section--ink .pillar p {
@@ -697,7 +697,7 @@ button.nav-cta:hover,
 }
 
 .section--ink .stat__value {
-  color: var(--dawn);
+  color: var(--white);
 }
 
 .section--ink .stat__label {
@@ -705,11 +705,12 @@ button.nav-cta:hover,
 }
 
 .section--ink .link-arrow {
-  color: var(--dawn);
+  color: var(--white);
 }
 
 .section--ink .link-arrow:hover {
   color: #fff;
+  opacity: 0.85;
 }
 
 .section--fog {
@@ -898,7 +899,7 @@ button.nav-cta:hover,
   font-family: var(--font-display);
   font-size: 0.9rem;
   letter-spacing: 0.12em;
-  color: var(--dawn);
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: auto;
 }
 
@@ -945,7 +946,7 @@ button.nav-cta:hover,
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 4vw, 3.2rem);
   font-weight: 550;
-  color: var(--dawn);
+  color: var(--white);
   letter-spacing: -0.02em;
   line-height: 1;
   margin-bottom: 0.5rem;
@@ -2094,7 +2095,7 @@ button.nav-cta:hover,
 }
 
 .section--ink .about-stat__value {
-  color: var(--dawn);
+  color: var(--white);
 }
 
 .about-stat__label {
@@ -2375,7 +2376,7 @@ button.nav-cta:hover,
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--dawn);
+  color: var(--white);
   margin-bottom: 1rem;
 }
 
