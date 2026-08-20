@@ -1,23 +1,17 @@
-# Staff CRM setup
+# Members CRM
 
-## One-time: apply the database migration
+Open the page at:
 
-In the Supabase SQL Editor for project `vxqryagqfqsjcwndifvl`, run:
+- https://6-4-fellowship.vercel.app/crm.html
+- https://6-4-fellowship.vercel.app/CRM
 
-`supabase/migrations/20260820145837_profiles_and_coaching_progress.sql`
+(Not `index.html/CRM` — that path is invalid.)
 
-This creates `profiles` and `coaching_progress` with RLS so members can only read/update their own rows, and admins can select all.
+## One-time: apply database migrations
 
-## One-time: mark staff as admin
+In the Supabase SQL Editor for project `vxqryagqfqsjcwndifvl`, run in order:
 
-1. Open **Supabase → Authentication → Users**
-2. Select the staff account
-3. Under **App Metadata** (not User Metadata), set:
+1. `supabase/migrations/20260820145837_profiles_and_coaching_progress.sql`
+2. `supabase/migrations/20260820154500_crm_public_read.sql`
 
-```json
-{ "role": "admin" }
-```
-
-4. Save, then have the staff member sign out and sign back in so the JWT refreshes
-
-Admins see a **CRM** link in the header (next to Members) and can open `/crm.html`. Regular members are redirected to `members.html`.
+The second migration lets the CRM load member rows without signing in.

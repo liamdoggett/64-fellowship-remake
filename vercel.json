@@ -3,5 +3,9 @@
   "framework": null,
   "installCommand": "",
   "buildCommand": "",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/CRM", "destination": "/crm.html" },
+    { "source": "/crm", "destination": "/crm.html" }
+  ]
 }

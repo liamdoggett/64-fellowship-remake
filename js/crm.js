@@ -1,5 +1,4 @@
-import { getSessionWhenReady, signOut, supabase } from "./supabase-client.js";
-import { isAdmin } from "./profiles.js";
+import { supabase } from "./supabase-client.js";
 import { COACHING_STEPS } from "./coaching-progress.js";
 
 const statusEl = document.getElementById("crm-status");
@@ -8,7 +7,6 @@ const searchEl = document.getElementById("crm-search");
 const tbody = document.getElementById("crm-table-body");
 const emptyEl = document.getElementById("crm-empty");
 const resultCountEl = document.getElementById("crm-result-count");
-const signOutBtn = document.getElementById("sign-out-btn");
 
 const statTotal = document.getElementById("stat-total");
 const statPastors = document.getElementById("stat-pastors");
@@ -212,23 +210,12 @@ async function loadMembers() {
 
 async function init() {
   try {
-    const session = await getSessionWhenReady();
-    if (!session?.user) {
-      window.location.href = "login.html";
-      return;
-    }
-
-    if (!isAdmin(session.user)) {
-      window.location.href = "members.html";
-      return;
-    }
-
     await loadMembers();
   } catch (err) {
     console.error(err);
     setStatus(
       err?.message ||
-        "Could not load CRM. Confirm the profiles migration is applied and your account has app_metadata.role = admin.",
+        "Could not load CRM. Confirm the profiles migrations are applied in Supabase.",
       true
     );
   }
@@ -236,14 +223,6 @@ async function init() {
 
 searchEl?.addEventListener("input", () => {
   renderTable();
-});
-
-signOutBtn?.addEventListener("click", async () => {
-  try {
-    await signOut();
-  } finally {
-    window.location.href = "login.html";
-  }
 });
 
 init();
