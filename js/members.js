@@ -1,7 +1,8 @@
 import { getSessionWhenReady, signOut } from "./supabase-client.js";
+import { syncProfileFromSession } from "./profiles.js";
 import {
   getProgressStats,
-  ensureStartedAtOne,
+  ensureStartedAtOneAsync,
   COACHING_STEPS,
 } from "./coaching-progress.js";
 
@@ -17,7 +18,6 @@ const stepsEl = document.getElementById("progress-steps");
 const barEl = document.getElementById("coaching-progress-bar");
 
 function renderProgress(userId) {
-  ensureStartedAtOne(userId);
   const stats = getProgressStats(userId);
 
   if (emptyEl) emptyEl.hidden = true;
@@ -53,6 +53,9 @@ async function init() {
       window.location.href = "login.html";
       return;
     }
+
+    await syncProfileFromSession(session);
+    await ensureStartedAtOneAsync(session.user.id);
 
     const email = session.user.email || "";
     const metaName =

@@ -2457,3 +2457,215 @@ button.nav-cta:hover,
 .mt-2 {
   margin-top: 2rem;
 }
+
+/* ——— Staff CRM ——— */
+.crm-layout {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.crm-status {
+  margin: 0;
+  color: var(--slate);
+}
+
+.crm-status.is-error {
+  color: var(--sea);
+}
+
+.crm-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 720px) {
+  .crm-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.crm-stat {
+  padding: 1rem 0;
+  border-top: 1px solid var(--fog);
+}
+
+.crm-stat__value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 550;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.crm-stat__label {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.crm-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.crm-search {
+  flex: 1 1 16rem;
+}
+
+.crm-search input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--fog);
+  border-radius: 0;
+  background: #fff;
+  font: inherit;
+  color: var(--ink);
+}
+
+.crm-search input:focus {
+  outline: 2px solid var(--sea);
+  outline-offset: 2px;
+}
+
+.crm-result-count {
+  margin: 0;
+  color: var(--slate);
+  font-size: 0.95rem;
+}
+
+.crm-panels {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .crm-panels {
+    grid-template-columns: 1.6fr 0.9fr;
+    gap: 2.5rem;
+  }
+}
+
+.crm-table-wrap {
+  overflow-x: auto;
+  border-top: 1px solid var(--fog);
+}
+
+.crm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.crm-table th,
+.crm-table td {
+  padding: 0.85rem 0.65rem;
+  text-align: left;
+  border-bottom: 1px solid var(--fog);
+  vertical-align: top;
+}
+
+.crm-table th {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--slate);
+  white-space: nowrap;
+}
+
+.crm-table tbody tr {
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+
+.crm-table tbody tr:hover,
+.crm-table tbody tr:focus-visible {
+  background: rgba(10, 26, 47, 0.04);
+  outline: none;
+}
+
+.crm-table tbody tr.is-selected {
+  background: rgba(10, 26, 47, 0.07);
+}
+
+.crm-empty {
+  margin: 1rem 0 0;
+  color: var(--slate);
+}
+
+.crm-detail {
+  padding-top: 0.25rem;
+}
+
+.crm-detail__title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  margin: 0.5rem 0 0.75rem;
+}
+
+.crm-detail__hint {
+  color: var(--slate);
+  margin: 0;
+}
+
+.crm-detail__fields {
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.crm-detail__fields div {
+  display: grid;
+  gap: 0.2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--fog);
+}
+
+.crm-detail__fields dt {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.crm-detail__fields dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+.crm-detail__steps {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.crm-detail__steps li {
+  display: flex;
+  gap: 0.65rem;
+  color: var(--slate);
+  font-size: 0.95rem;
+}
+
+.crm-detail__steps li.is-done {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.crm-detail__steps li span {
+  font-variant-numeric: tabular-nums;
+  color: var(--sea);
+  font-weight: 700;
+}

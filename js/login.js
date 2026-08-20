@@ -1,4 +1,6 @@
 import { signIn, getSession, resetPassword } from "./supabase-client.js";
+import { upsertProfileFromUser } from "./profiles.js";
+import { ensureStartedAtOneAsync } from "./coaching-progress.js";
 
 const loginView = document.getElementById("login-view");
 const forgotView = document.getElementById("forgot-view");
@@ -33,10 +35,19 @@ function showLogin() {
   loginForm?.email?.focus();
 }
 
+async function syncMemberData(session) {
+  if (!session?.user) return;
+  await upsertProfileFromUser(session.user);
+  await ensureStartedAtOneAsync(session.user.id);
+}
+
 async function redirectIfSignedIn() {
   try {
     const session = await getSession();
-    if (session) window.location.href = "members.html";
+    if (session) {
+      await syncMemberData(session);
+      window.location.href = "members.html";
+    }
   } catch {
     /* ignore */
   }
@@ -71,7 +82,8 @@ loginForm?.addEventListener("submit", async (e) => {
   setNote(loginNote, "Checking your credentials…");
 
   try {
-    await signIn(email, password);
+    const { session } = await signIn(email, password);
+    await syncMemberData(session);
     setNote(loginNote, "Signed in. Redirecting…");
     window.location.href = "members.html";
   } catch (err) {

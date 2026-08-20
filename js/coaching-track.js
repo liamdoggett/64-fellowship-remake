@@ -1,9 +1,11 @@
 import { getSessionWhenReady } from "./supabase-client.js";
+import { syncProfileFromSession } from "./profiles.js";
 import {
   COACHING_STEPS,
   getProgressStats,
   completeStep,
   ensureStartedAtOne,
+  ensureStartedAtOneAsync,
   isStepComplete,
   isStepUnlocked,
 } from "./coaching-progress.js";
@@ -113,7 +115,8 @@ async function init() {
     }
 
     userId = session.user.id;
-    ensureStartedAtOne(userId);
+    await syncProfileFromSession(session);
+    await ensureStartedAtOneAsync(userId);
     showTrack(session.user.email || "your account");
     render();
   } catch (err) {

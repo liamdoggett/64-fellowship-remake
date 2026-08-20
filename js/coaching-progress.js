@@ -1,3 +1,5 @@
+import { supabase } from "./supabase-client.js";
+
 /** Coaching pathway — 7 sequential steps. Members start at 1 of 7 on sign-in. */
 export const COACHING_STEPS = [
   {
@@ -38,6 +40,7 @@ export const COACHING_STEPS = [
 ];
 
 const STORAGE_PREFIX = "64-coaching-progress:";
+const TOTAL_STEPS = COACHING_STEPS.length;
 
 function storageKey(userId) {
   return `${STORAGE_PREFIX}${userId}`;
@@ -47,8 +50,38 @@ export function emptyProgress() {
   return {
     started: false,
     completed: [],
+    currentStep: 1,
     updatedAt: null,
   };
+}
+
+function normalizeProgress(raw) {
+  const completed = Array.isArray(raw?.completed) ? [...new Set(raw.completed)] : [];
+  const started = Boolean(raw?.started) || completed.length > 0;
+  const completedCount = COACHING_STEPS.filter((step) => completed.includes(step.id)).length;
+  const currentStep =
+    typeof raw?.currentStep === "number" && raw.currentStep >= 1
+      ? Math.min(raw.currentStep, TOTAL_STEPS)
+      : started
+        ? completedCount >= TOTAL_STEPS
+          ? TOTAL_STEPS
+          : completedCount + 1
+        : 1;
+
+  return {
+    started,
+    completed,
+    currentStep,
+    updatedAt: raw?.updatedAt || raw?.updated_at || null,
+  };
+}
+
+function computeCurrentStep(progress) {
+  const completedCount = COACHING_STEPS.filter((step) =>
+    progress.completed.includes(step.id)
+  ).length;
+  if (!progress.started) return 1;
+  return completedCount >= TOTAL_STEPS ? TOTAL_STEPS : completedCount + 1;
 }
 
 export function loadProgress(userId) {
@@ -56,26 +89,107 @@ export function loadProgress(userId) {
   try {
     const raw = localStorage.getItem(storageKey(userId));
     if (!raw) return emptyProgress();
-    const parsed = JSON.parse(raw);
-    return {
-      started: Boolean(parsed.started),
-      completed: Array.isArray(parsed.completed) ? parsed.completed : [],
-      updatedAt: parsed.updatedAt || null,
-    };
+    return normalizeProgress(JSON.parse(raw));
   } catch {
     return emptyProgress();
   }
 }
 
-export function saveProgress(userId, progress) {
-  if (!userId) return;
-  const next = {
-    started: Boolean(progress.started),
-    completed: [...new Set(progress.completed)],
-    updatedAt: new Date().toISOString(),
-  };
-  localStorage.setItem(storageKey(userId), JSON.stringify(next));
+function writeLocal(userId, progress) {
+  const next = normalizeProgress({
+    ...progress,
+    currentStep: computeCurrentStep(progress),
+    updatedAt: progress.updatedAt || new Date().toISOString(),
+  });
+  localStorage.setItem(
+    storageKey(userId),
+    JSON.stringify({
+      started: next.started,
+      completed: next.completed,
+      currentStep: next.currentStep,
+      updatedAt: next.updatedAt,
+    })
+  );
   return next;
+}
+
+async function pushRemote(userId, progress) {
+  if (!userId) return;
+  const next = normalizeProgress(progress);
+  const { error } = await supabase.from("coaching_progress").upsert(
+    {
+      user_id: userId,
+      started: next.started,
+      completed: next.completed,
+      current_step: next.currentStep,
+      updated_at: next.updatedAt || new Date().toISOString(),
+    },
+    { onConflict: "user_id" }
+  );
+  if (error) {
+    console.warn("Coaching progress sync failed:", error.message);
+  }
+}
+
+export function saveProgress(userId, progress) {
+  if (!userId) return emptyProgress();
+  const next = writeLocal(userId, {
+    started: Boolean(progress.started),
+    completed: [...new Set(progress.completed || [])],
+    updatedAt: new Date().toISOString(),
+  });
+  // Fire-and-forget remote sync; localStorage remains the offline cache
+  void pushRemote(userId, next);
+  return next;
+}
+
+/** Prefer the newer of local vs remote, then keep both in sync. */
+export async function hydrateProgress(userId) {
+  if (!userId) return emptyProgress();
+
+  const local = loadProgress(userId);
+  let remote = null;
+
+  try {
+    const { data, error } = await supabase
+      .from("coaching_progress")
+      .select("started, completed, current_step, updated_at")
+      .eq("user_id", userId)
+      .maybeSingle();
+    if (error) throw error;
+    if (data) {
+      remote = normalizeProgress({
+        started: data.started,
+        completed: data.completed,
+        currentStep: data.current_step,
+        updatedAt: data.updated_at,
+      });
+    }
+  } catch (err) {
+    console.warn("Could not load remote coaching progress:", err?.message || err);
+    return local;
+  }
+
+  if (!remote) {
+    if (local.started || local.completed.length) {
+      await pushRemote(userId, local);
+    }
+    return local;
+  }
+
+  const localTime = local.updatedAt ? Date.parse(local.updatedAt) : 0;
+  const remoteTime = remote.updatedAt ? Date.parse(remote.updatedAt) : 0;
+
+  if (!local.started && !local.completed.length) {
+    return writeLocal(userId, remote);
+  }
+
+  if (remoteTime >= localTime) {
+    return writeLocal(userId, remote);
+  }
+
+  await pushRemote(userId, local);
+  return local;
 }
 
 /** On sign-in / members load: start every member at step 1 of 7. */
@@ -84,12 +198,18 @@ export function ensureStartedAtOne(userId) {
   const progress = loadProgress(userId);
   if (progress.started) return progress;
   progress.started = true;
+  progress.currentStep = 1;
   return saveProgress(userId, progress);
+}
+
+export async function ensureStartedAtOneAsync(userId) {
+  await hydrateProgress(userId);
+  return ensureStartedAtOne(userId);
 }
 
 export function getProgressStats(userId) {
   const progress = loadProgress(userId);
-  const total = COACHING_STEPS.length;
+  const total = TOTAL_STEPS;
   const completedCount = COACHING_STEPS.filter((step) =>
     progress.completed.includes(step.id)
   ).length;

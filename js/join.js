@@ -1,4 +1,6 @@
 import { signUp } from "./supabase-client.js";
+import { upsertProfileFromUser } from "./profiles.js";
+import { ensureStartedAtOne } from "./coaching-progress.js";
 
 const form = document.getElementById("join-form");
 const note = form?.querySelector(".form-note");
@@ -57,7 +59,9 @@ form?.addEventListener("submit", async (e) => {
       return;
     }
 
-    if (data.session) {
+    if (data.session?.user) {
+      await upsertProfileFromUser(data.session.user);
+      ensureStartedAtOne(data.session.user.id);
       setNote("Account created. Redirecting…");
       window.location.href = "members.html";
       return;

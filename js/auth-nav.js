@@ -1,4 +1,5 @@
 import { getSessionWhenReady, signOut } from "./supabase-client.js";
+import { isAdmin } from "./profiles.js";
 
 /**
  * Keep the site header in sync with auth state on every page.
@@ -9,6 +10,7 @@ export async function syncAuthNav() {
 
   const session = await getSessionWhenReady();
   const signedIn = Boolean(session?.user);
+  const admin = signedIn && isAdmin(session.user);
 
   nav.querySelectorAll("[data-auth-injected]").forEach((el) => el.remove());
 
@@ -34,6 +36,32 @@ export async function syncAuthNav() {
       nav.appendChild(link);
     } else {
       membersLink.hidden = false;
+    }
+
+    const existingCrm = nav.querySelector('a[href="crm.html"]');
+    if (admin) {
+      if (!existingCrm) {
+        const crmLink = document.createElement("a");
+        crmLink.href = "crm.html";
+        crmLink.textContent = "CRM";
+        crmLink.dataset.authInjected = "true";
+        if (location.pathname.endsWith("crm.html")) {
+          crmLink.setAttribute("aria-current", "page");
+        }
+        const membersAnchor = nav.querySelector('a[href="members.html"]');
+        if (membersAnchor?.nextSibling) {
+          nav.insertBefore(crmLink, membersAnchor.nextSibling);
+        } else if (membersAnchor) {
+          membersAnchor.after(crmLink);
+        } else {
+          nav.appendChild(crmLink);
+        }
+      } else {
+        existingCrm.hidden = false;
+      }
+    } else if (existingCrm) {
+      // Never show CRM to non-admins (including hard-coded markup)
+      existingCrm.remove();
     }
 
     if (!existingSignOut) {
