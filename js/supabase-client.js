@@ -1,5 +1,5 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.110.7";
-import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from "./supabase-config.js";
+import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, authRedirectUrl } from "./supabase-config.js";
 
 const STORAGE_KEY = "sb-64fellowship-auth";
 
@@ -130,7 +130,7 @@ export async function signIn(email, password) {
 }
 
 export async function signUp({ email, password, metadata = {} }) {
-  const emailRedirectTo = new URL("members.html", window.location.href).href;
+  const emailRedirectTo = authRedirectUrl("members.html");
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
@@ -156,7 +156,7 @@ export async function signOut() {
 }
 
 export async function resetPassword(email) {
-  const redirectTo = new URL("reset-password.html", window.location.href).href;
+  const redirectTo = authRedirectUrl("reset-password.html");
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo,
   });
