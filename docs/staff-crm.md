@@ -16,3 +16,16 @@ Until this runs, the CRM cannot show anyone (`profiles` does not exist yet).
 4. Refresh `/crm.html`
 
 That script creates `profiles` + `coaching_progress`, backfills existing Auth users, and auto-adds new joins.
+
+## Optional: seed 100 fake members for CRM testing
+
+1. SQL Editor → paste [`supabase/SEED_FAKE_MEMBERS.sql`](../supabase/SEED_FAKE_MEMBERS.sql) → **Run**
+2. Refresh `/crm.html`
+
+Fake emails look like `fake.member.001@example.test` (password if you ever sign in as one: `FakeMember123!`).
+
+Cleanup:
+
+```sql
+delete from auth.users where email like 'fake.member.%@example.test';
+```
