@@ -3,133 +3,176 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Members CRM | The 6:4 Fellowship</title>
-    <meta name="description" content="Staff CRM for 6:4 Fellowship members." />
+    <title>CRM | The 6:4 Fellowship</title>
+    <meta name="description" content="Private staff CRM for 6:4 Fellowship contacts." />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,450;9..144,550;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body>
-    <header class="site-header site-header--solid">
-      <div class="container nav-inner">
-        <a class="brand" href="index.html" aria-label="The 6:4 Fellowship home">
-          <img class="brand__logo" src="assets/logo.png" alt="The 6:4 Fellowship" width="315" height="60" />
-        </a>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">
-          <span></span><span></span><span></span>
-        </button>
-        <nav class="nav-links" aria-label="Primary">
-          <a href="about.html">About</a>
-          <a href="library.html">Library</a>
-          <a href="resources.html">Resources</a>
-          <a href="store.html">Store</a>
-          <a href="events.html">Events</a>
-          <a href="coaching.html">Coaching</a>
-          <a href="donate.html">Donate</a>
-          <a href="contact.html">Contact</a>
-          <a href="login.html">Login</a>
-          <a class="nav-cta" href="join.html">Join for Free</a>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <section class="page-hero">
-        <div class="container">
-          <p class="eyebrow" style="color: var(--dawn)">Members directory</p>
-          <h1>Members CRM</h1>
-          <p>Search and review fellowship members, churches, roles, and coaching progress.</p>
+  <body class="hs-body">
+    <div class="hs-app" id="hs-app">
+      <aside class="hs-sidebar" aria-label="CRM navigation">
+        <div class="hs-sidebar__brand">
+          <img src="assets/logo.png" alt="" width="120" height="23" />
+          <span>CRM</span>
         </div>
-      </section>
+        <nav class="hs-sidebar__nav">
+          <p class="hs-sidebar__label">CRM</p>
+          <button type="button" class="hs-nav-item is-active" data-section="contacts">
+            <span class="hs-nav-item__icon" aria-hidden="true">◉</span>
+            Contacts
+          </button>
+          <button type="button" class="hs-nav-item" data-section="companies">
+            <span class="hs-nav-item__icon" aria-hidden="true">▣</span>
+            Companies
+          </button>
+          <button type="button" class="hs-nav-item" data-section="pipeline">
+            <span class="hs-nav-item__icon" aria-hidden="true">▤</span>
+            Coaching pipeline
+          </button>
+          <p class="hs-sidebar__label">Shortcuts</p>
+          <a class="hs-nav-item" href="index.html">← Back to site</a>
+        </nav>
+        <div class="hs-sidebar__foot">
+          <span>6:4 Fellowship</span>
+          <small>Private staff workspace</small>
+        </div>
+      </aside>
 
-      <section class="section section--paper">
-        <div class="container crm-layout">
-          <p id="crm-status" class="crm-status" role="status">Loading members…</p>
+      <div class="hs-shell">
+        <header class="hs-topbar">
+          <div class="hs-topbar__left">
+            <h1 class="hs-topbar__title" id="hs-page-title">Contacts</h1>
+            <p class="hs-topbar__meta" id="hs-page-meta">Loading…</p>
+          </div>
+          <div class="hs-topbar__right">
+            <label class="hs-search">
+              <span class="sr-only">Search contacts</span>
+              <input id="crm-search" type="search" placeholder="Search name, email, church…" autocomplete="off" />
+            </label>
+            <button type="button" class="hs-btn hs-btn--secondary" id="hs-refresh">Refresh</button>
+          </div>
+        </header>
 
-          <div id="crm-app" hidden>
-            <div class="crm-stats" aria-label="Member totals">
-              <div class="crm-stat">
-                <span class="crm-stat__value" id="stat-total">0</span>
-                <span class="crm-stat__label">Members</span>
-              </div>
-              <div class="crm-stat">
-                <span class="crm-stat__value" id="stat-pastors">0</span>
-                <span class="crm-stat__label">Pastors</span>
-              </div>
-              <div class="crm-stat">
-                <span class="crm-stat__value" id="stat-disciples">0</span>
-                <span class="crm-stat__label">Disciples</span>
-              </div>
-              <div class="crm-stat">
-                <span class="crm-stat__value" id="stat-started">0</span>
-                <span class="crm-stat__label">Pathway started</span>
-              </div>
+        <p id="crm-status" class="hs-status" role="status">Loading contacts…</p>
+
+        <div id="crm-app" class="hs-main" hidden>
+          <!-- Contacts -->
+          <section class="hs-section" id="section-contacts" data-section-panel="contacts">
+            <div class="hs-views" role="tablist" aria-label="Contact views">
+              <button type="button" class="hs-view is-active" data-view="all">All contacts <span id="count-all">0</span></button>
+              <button type="button" class="hs-view" data-view="pastor">Pastors <span id="count-pastor">0</span></button>
+              <button type="button" class="hs-view" data-view="disciple">Disciples <span id="count-disciple">0</span></button>
+              <button type="button" class="hs-view" data-view="started">Pathway started <span id="count-started">0</span></button>
+              <button type="button" class="hs-view" data-view="not_started">Not started <span id="count-not-started">0</span></button>
             </div>
 
-            <div class="crm-toolbar">
-              <label class="crm-search">
-                <span class="sr-only">Search members</span>
-                <input
-                  id="crm-search"
-                  type="search"
-                  placeholder="Search name, email, church…"
-                  autocomplete="off"
-                />
-              </label>
-              <p class="crm-result-count" id="crm-result-count"></p>
+            <div class="hs-board">
+              <div class="hs-table-card">
+                <div class="hs-table-toolbar">
+                  <p id="crm-result-count" class="hs-result-count"></p>
+                  <div class="hs-sort">
+                    <label for="crm-sort">Sort</label>
+                    <select id="crm-sort">
+                      <option value="created_desc">Create date (newest)</option>
+                      <option value="created_asc">Create date (oldest)</option>
+                      <option value="name_asc">Name (A–Z)</option>
+                      <option value="name_desc">Name (Z–A)</option>
+                      <option value="step_desc">Coaching step (high–low)</option>
+                      <option value="step_asc">Coaching step (low–high)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="hs-table-wrap" role="region" aria-label="Contacts table">
+                  <table class="hs-table">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="hs-col-check"><span class="sr-only">Select</span></th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Company (church)</th>
+                        <th scope="col">Lifecycle stage</th>
+                        <th scope="col">Coaching stage</th>
+                        <th scope="col">Create date</th>
+                      </tr>
+                    </thead>
+                    <tbody id="crm-table-body"></tbody>
+                  </table>
+                  <p id="crm-empty" class="hs-empty" hidden>No contacts match this view.</p>
+                </div>
+              </div>
             </div>
+          </section>
 
-            <div class="crm-panels">
-              <div class="crm-table-wrap" role="region" aria-label="Member list" tabindex="0">
-                <table class="crm-table">
+          <!-- Companies -->
+          <section class="hs-section" id="section-companies" data-section-panel="companies" hidden>
+            <div class="hs-table-card">
+              <div class="hs-table-toolbar">
+                <p class="hs-result-count" id="companies-count"></p>
+              </div>
+              <div class="hs-table-wrap">
+                <table class="hs-table">
                   <thead>
                     <tr>
-                      <th scope="col">Name</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Church</th>
-                      <th scope="col">Role</th>
-                      <th scope="col">Step</th>
+                      <th scope="col">Company</th>
+                      <th scope="col">Contacts</th>
+                      <th scope="col">Pastors</th>
+                      <th scope="col">Disciples</th>
                     </tr>
                   </thead>
-                  <tbody id="crm-table-body"></tbody>
+                  <tbody id="companies-body"></tbody>
                 </table>
-                <p id="crm-empty" class="crm-empty" hidden>No members match that search.</p>
               </div>
-
-              <aside class="crm-detail" id="crm-detail" aria-live="polite">
-                <p class="eyebrow">Member detail</p>
-                <h2 class="display crm-detail__title" id="detail-name">Select a member</h2>
-                <p class="crm-detail__hint" id="detail-hint">Click a row to see contact fields and coaching steps.</p>
-                <dl class="crm-detail__fields" id="detail-fields" hidden></dl>
-                <div id="detail-steps-wrap" hidden>
-                  <p class="eyebrow" style="margin-top: 1.5rem">Completed steps</p>
-                  <ul class="crm-detail__steps" id="detail-steps"></ul>
-                </div>
-              </aside>
             </div>
-          </div>
-        </div>
-      </section>
-    </main>
+          </section>
 
-    <footer class="site-footer">
-      <div class="container">
-        <div class="footer-bottom" style="border: 0; padding-top: 0">
-          <p>© <span class="y"></span> The 6:4 Fellowship.</p>
-          <p><a href="index.html">Back to home</a></p>
+          <!-- Pipeline -->
+          <section class="hs-section" id="section-pipeline" data-section-panel="pipeline" hidden>
+            <div class="hs-pipeline" id="pipeline-board"></div>
+          </section>
         </div>
       </div>
-    </footer>
-    <script>
-      document.querySelectorAll(".y").forEach((el) => (el.textContent = new Date().getFullYear()));
-    </script>
-    <script src="js/main.js"></script>
-    <script type="module" src="js/auth-nav.js"></script>
+
+      <!-- Record drawer -->
+      <div class="hs-drawer-backdrop" id="drawer-backdrop" hidden></div>
+      <aside class="hs-drawer" id="crm-detail" aria-hidden="true" aria-label="Contact record">
+        <div class="hs-drawer__head">
+          <button type="button" class="hs-icon-btn" id="drawer-close" aria-label="Close record">✕</button>
+          <div class="hs-drawer__identity">
+            <div class="hs-avatar hs-avatar--lg" id="detail-avatar" aria-hidden="true">?</div>
+            <div>
+              <h2 id="detail-name">Contact</h2>
+              <p id="detail-subtitle"></p>
+            </div>
+          </div>
+          <div class="hs-drawer__actions">
+            <a class="hs-btn hs-btn--secondary" id="detail-email-btn" href="#">Email</a>
+          </div>
+        </div>
+        <div class="hs-drawer__tabs" role="tablist">
+          <button type="button" class="hs-tab is-active" data-tab="overview" role="tab" aria-selected="true">Overview</button>
+          <button type="button" class="hs-tab" data-tab="pathway" role="tab" aria-selected="false">Coaching</button>
+          <button type="button" class="hs-tab" data-tab="activity" role="tab" aria-selected="false">Activity</button>
+        </div>
+        <div class="hs-drawer__body">
+          <div class="hs-tab-panel" id="tab-overview" data-tab-panel="overview">
+            <div class="hs-props" id="detail-fields"></div>
+          </div>
+          <div class="hs-tab-panel" id="tab-pathway" data-tab-panel="pathway" hidden>
+            <ol class="hs-pathway" id="detail-steps"></ol>
+          </div>
+          <div class="hs-tab-panel" id="tab-activity" data-tab-panel="activity" hidden>
+            <ul class="hs-activity" id="detail-activity"></ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+
     <script type="module" src="js/crm.js"></script>
   </body>
 </html>
