@@ -1,11 +1,10 @@
-# Members CRM
+# Members CRM (private URL)
 
-This page lists **fellowship members** from Supabase Auth (people who joined): name, email, church, role, coaching step.
+Unlisted staff page — **not linked in the site nav**. Open it only by URL:
 
-Open:
+https://6-4-fellowship.vercel.app/crm.html
 
-- https://6-4-fellowship.vercel.app/crm.html
-- https://6-4-fellowship.vercel.app/CRM
+(`noindex` is set so search engines should skip it.)
 
 ## Required: create the member tables (one paste)
 
@@ -16,11 +15,4 @@ Until this runs, the CRM cannot show anyone (`profiles` does not exist yet).
 3. Click **Run**
 4. Refresh `/crm.html`
 
-That script:
-
-- Creates `profiles` + `coaching_progress`
-- Backfills rows from existing Auth users (e.g. Hudson Hirst)
-- Auto-creates a profile when someone new joins
-- Allows the open CRM page to read the directory
-
-New joins also upsert a profile from the site; signing into Members syncs coaching progress.
+That script creates `profiles` + `coaching_progress`, backfills existing Auth users, and auto-adds new joins.
