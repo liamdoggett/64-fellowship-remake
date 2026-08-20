@@ -211,13 +211,23 @@ async function loadMembers() {
 async function init() {
   try {
     await loadMembers();
+    if (!members.length) {
+      setStatus(
+        "No member profiles yet. After you run supabase/SETUP_MEMBERS_CRM.sql in the Supabase SQL Editor, refresh this page — existing Auth users will appear here."
+      );
+    }
   } catch (err) {
     console.error(err);
+    const code = err?.code || "";
+    const missingTable = code === "PGRST205" || /Could not find the table/i.test(err?.message || "");
     setStatus(
-      err?.message ||
-        "Could not load CRM. Confirm the profiles migrations are applied in Supabase.",
+      missingTable
+        ? "Member tables are missing. In Supabase → SQL Editor, run supabase/SETUP_MEMBERS_CRM.sql, then refresh this page."
+        : err?.message ||
+            "Could not load members. Confirm SETUP_MEMBERS_CRM.sql has been run in Supabase.",
       true
     );
+    if (appEl) appEl.hidden = true;
   }
 }
 
